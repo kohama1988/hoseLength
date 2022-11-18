@@ -1,0 +1,12 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#coord1 {
+    background-color: greenyellow;
+}
+
+#coord2 {
+    background-color: lightblue;
+}
