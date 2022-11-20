@@ -141,6 +141,7 @@ const judgeTable = new Handsontable(judge, {
 const shape = document.querySelector('#shape');
 
 function setup() {
+  // let canvas = createCanvas(500, 300);
   let canvas = createCanvas(500, 300);
   canvas.parent(shape);
 }
