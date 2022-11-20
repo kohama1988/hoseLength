@@ -14,8 +14,8 @@
 
 <body>
     <!-- title section -->
-    <div id='title' class="container">
-        <div class="row">
+    <div id='title' class="container my-2">
+        <div class="row text-white">
             <h5>長さ計算表</h2>
                 <h6>個品設計　変化点気づきシート　～ホース設計検討</h3>
         </div>
@@ -45,13 +45,57 @@
         </div>
     </div>
 
-    <!-- result-1 section -->
-    <div id='result-1' class="container">
+    <!-- input and result section -->
+    <div class="container">
         <div class="row">
-            <div id="coord1" class="col"></div>
+            <div class="col-md-3">
+                <h6 class="text-white">図面座標値(入力用)</h6>
+                <div id="input"></div>
+            </div>
+            <div class="col-md-9">
+                <h6 class="text-white">0点座標値</h6>
+                <div class="mb-3" id="coord1"></div>
+                <h6 class="text-white mt-4">計算中間値</h6>
+                <div id="coord2"></div>
+            </div>
         </div>
-        <div class="row mt-3">
-            <div id="coord2" class="col"></div>
+
+    </div>
+
+    <!-- hose image section -->
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-3">
+                <h6 class="text-white">成形性判定</h6>
+                <div class="input-group input-group-sm mb-2">
+                    <label class="input-group-text" for="inputGroupSelect01">品種</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                      <option selected>品種を選択...</option>
+                      <option value="1">ラジエータホース　φ27</option>
+                      <option value="2">ラジエータホース　φ33</option>
+                      <option value="3">ラジエータホース　φ37</option>
+                      <option value="4">H/H, W/B φ13</option>
+                      <option value="5">H/H, W/B φ16</option>
+                      <option value="6">AT(φ9〜φ9.5) ER仕様</option>
+                      <option value="7">AT(φ9〜φ9.5) VAMAC仕様</option>
+                      <option value="8">V/B</option>
+                      <option value="9">FUEL 内装ホース</option>
+                      <option value="10">その他 総ゴム</option>
+                      <option value="11">特殊ホース　CPTフィラー(φ30.8)</option>
+                      <option value="12">特殊ホース　CPTブリーザー(φ6.9)</option>
+                      <option value="13">ターボエアホース(φ35以上)</option>
+                    </select>
+                  </div>
+                <div id="judge"></div>
+            </div>
+            <div class="col-md-5">
+                <h6 class="text-white">3D形状</h6>
+                <div id="shape"></div>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-white">計算中間値説明</h6>
+                <img src="./hose.png" alt="explanation">
+            </div>
         </div>
     </div>
 
@@ -64,6 +108,9 @@
         src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
     <script src="myCode.js"></script>
 </body>
 
