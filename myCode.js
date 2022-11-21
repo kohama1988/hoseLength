@@ -31,13 +31,19 @@ const inputTable = new Handsontable(input, {
   licenseKey: 'non-commercial-and-evaluation'
 });
 
-function getCoord(){
-  let data = inputTable.getData().map(item=>item.map(n=>parseFloat(n)));
+function getCoord() {
+  let data = inputTable.getData().map(item => item.map(n => parseFloat(n)));
 }
 getCoord();
 
+inputTable.addHook('construct', () => {
+  console.log('initiated!')
+})
+
+inputTable.addHook('afterChange', calZeroCoord)
+
 // swap col and row
-const transpose = a => a[0].map((_,c) => a.map(r=>r[c]));
+const transpose = a => a[0].map((_, c) => a.map(r => r[c]));
 
 // draw result-1 table
 const coord1 = document.getElementById('coord1');
@@ -61,27 +67,36 @@ const hot1 = new Handsontable(coord1, {
   licenseKey: 'non-commercial-and-evaluation'
 });
 
-// tranpose dataFromInput to 0 coordinates
-dataFromInput = inputTable.getData();
-let result1 = transpose(dataFromInput);
+function calZeroCoord() {
+  // tranpose dataFromInput to 0 coordinates
+  dataFromInput = inputTable.getData();
+  let result1 = transpose(dataFromInput);
 
-// get the 1st null of coordinates
-let index = result1[0].indexOf(null);
-// substractd by the 1st one
-for(let i=0; i<result1.length; i++){
-  let temp = result1[i][0]
-  for(let j=0; j<result1[i].length; j++){
-    result1[i][j] -= temp;
+  // get the 1st null of coordinates
+  let index = result1[0].indexOf(null);
+  // substractd by the 1st one
+  for (let i = 0; i < result1.length; i++) {
+    let temp = result1[i][0]
+    for (let j = 0; j < result1[i].length; j++) {
+      result1[i][j] -= temp;
+    }
   }
-}
-// replace extraordinary data by null
-for(let i=0; i<result1.length; i++){
-  for(let j=index; j<result1[i].length; j++){
-    result1[i][j] = null;
+  // replace extraordinary data by null
+  for (let i = 0; i < result1.length; i++) {
+    for (let j = index; j < result1[i].length; j++) {
+      result1[i][j] = null;
+    }
   }
+  // update data of 0 coordinates
+  hot1.updateData(result1);
+
+  console.table(result1);
 }
-// update data of 0 coordinates
-hot1.updateData(result1);
+
+function calL(){
+
+}
+
 
 // draw result-2 table
 const coord2 = document.getElementById('coord2');
@@ -113,13 +128,13 @@ let judge = document.querySelector('#judge');
 
 let judgeData = [
   [, ,],
-  [, , ],
-  [, , ],
-  [, , ],
-  [, , ],
-  [, , ],
-  [, , ],
-  [, , ],
+  [, ,],
+  [, ,],
+  [, ,],
+  [, ,],
+  [, ,],
+  [, ,],
+  [, ,],
 ];
 
 const judgeTable = new Handsontable(judge, {
@@ -132,8 +147,8 @@ const judgeTable = new Handsontable(judge, {
   colHeaders: ['設計標準', '図面値'],
   licenseKey: 'non-commercial-and-evaluation',
   columns: [
-    {data: '設計標準', readOnly: true},
-    {data: '図面値'}
+    { data: '設計標準', readOnly: true },
+    { data: '図面値' }
   ]
 })
 
